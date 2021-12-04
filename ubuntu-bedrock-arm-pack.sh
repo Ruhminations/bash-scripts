@@ -3,8 +3,8 @@
 # Official Minecraft Bedrock Server Page: https://www.minecraft.net/en-us/download/server/bedrock
 # example: wget -qO - https://raw.githubusercontent.com/Ruhminations/nix-scripts/main/ubuntu-bedrock-arm-pack.sh | bash -s "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.18.1.02.zip"
 
-zip --help 2>/dev/null || echo "[error] zip required"
-curl --help 2>/dev/null || echo "[error] curl required"
+zip --help 2>/dev/null || (echo "[error] zip required" && exit 1)
+curl --help 2>/dev/null || (echo "[error] curl required" && exit 1)
 mkdir bedrock || echo "[error] bedrock folder already exists."
 pushd bedrock
 wget -O bedrock-server.zip $1
