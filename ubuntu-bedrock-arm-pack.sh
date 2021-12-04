@@ -1,22 +1,23 @@
 #! /bin/sh
 # Requires bedrock server url as parameter
+# Official Minecraft Bedrock Server Page: https://www.minecraft.net/en-us/download/server/bedrock
+# example: wget -qO - https://raw.githubusercontent.com/Ruhminations/nix-scripts/main/ubuntu-bedrock-arm-pack.sh | bash -s "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.18.1.02.zip"
 
 mkdir bedrock || echo "[error] bedrock folder already exists."
-cd bedrock
+pushd bedrock
 wget -O bedrock-server.zip $1
 unzip -o bedrock-server.zip
 file bedrock_server
 ldd bedrock_server || echo "[error] binary executable not recognized. OS architecture must match output above to run this script."
 mkdir depends
 ldd bedrock_server | grep "=> /" | awk '{print $3}' | xargs -I '{}' cp -Lv '{}' depends
-cd depends
+pushd depends
 cp -Lv /lib64/* ./
-cd ..
-zip -r depends.zip depends
-mv depends/* ./
-mv depends.zip ../bedrock_only_depends.zip
-echo "bedrock_only_depends.zip creation complete"
-# TODO download start script
-# TODO package bedrock with depends
-cd ..
+zip -r bedrock_only_depends.zip *
+mv /* ../
+popd
+rm -r depends
+curl --upload-file bedrock_only_depends.zip https://transfer.sh/bedrock_only_depends.zip
+rm bedrock_only_depends.zip
+popd
 rm -r bedrock
