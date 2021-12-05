@@ -1,5 +1,5 @@
 # Oracle Cloud Bucket Ubuntu s3fs Init
-# example: wget -qO - https://raw.githubusercontent.com/Ruhminations/nix-scripts/main/oracle-cloud-ubuntu-s3fs-init.sh | bash -s "user:pass" "bucket-name" "namespace" "region"
+# example: wget -qO - https://raw.githubusercontent.com/Ruhminations/nix-scripts/main/oracle-cloud-ubuntu-s3fs-init.sh | sudo bash -s "user:pass" "bucket-name" "namespace" "region"
 
 sudo apt-get -y install s3fs nfs-kernel-server
 echo $1 | sudo tee /etc/passwd-s3fs
