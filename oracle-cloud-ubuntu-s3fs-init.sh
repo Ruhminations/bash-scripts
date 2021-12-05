@@ -2,6 +2,7 @@
 # example: wget -qO - https://raw.githubusercontent.com/Ruhminations/nix-scripts/main/oracle-cloud-ubuntu-s3fs-init.sh | sudo bash -s "user:pass" "bucket-name" "namespace" "region"
 # docs: https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/s3compatibleapi.htm (Mounting Object Storage buckets using s3fs)
 
+# Warning at time of writing, s3fs for ARM in ubuntu registries is very old.  You may want to compile from source (ARM will require a mod to https://github.com/maresb/docker-build-s3fs)
 sudo apt-get -y install s3fs nfs-kernel-server
 echo $1 | sudo tee /etc/passwd-s3fs
 chmod 600 /etc/passwd-s3fs
