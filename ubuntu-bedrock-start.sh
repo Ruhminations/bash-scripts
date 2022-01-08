@@ -1,14 +1,22 @@
 #! /bin/sh
-# example:
 
-#TODO create stop script to use screen
-#if [ -z "$STY" ]; then exec screen -L -Logfile bedrock.log -dmS bedrock sh $0; fi
+if [ -z "$STY" ]; then
+  # TODO pull ports from properties
+  sudo iptables -L | grep 'ACCEPT.*udp.*19132' || sudo iptables -A INPUT -p udp --dport 19132 -j ACCEPT
+  sudo iptables -L | grep 'ACCEPT.*udp.*19133' || sudo iptables -A INPUT -p udp --dport 19133 -j ACCEPT
 
-if [ -f /lib64/ld-linux-x86-64.so.2 ]; then
-  sudo rm /lib64/ld-linux-x86-64.so.2
+  sudo mkdir /mnt/bedrock
+  sudo mount -t tmpfs -o rw,size=2G tmpfs /mnt/bedrock
+  cp -r ./ /mnt/bedrock
+  pushd /mnt/bedrock
+
+  if [ -f /lib64/ld-linux-x86-64.so.2 ]; then
+    sudo rm /lib64/ld-linux-x86-64.so.2
+  fi
+  if [ -f ld-linux-x86-64.so.2 ]; then
+    sudo ln -s ld-linux-x86-64.so.2 /lib64/ld-linux-x86-64.so.2
+  fi
+  exec screen -L -Logfile bedrock.log -dmS bedrock sh $0;
+else
+  LD_LIBRARY_PATH=. ./bedrock_server
 fi
-if [ -f ld-linux-x86-64.so.2 ]; then
-  sudo ln -s ld-linux-x86-64.so.2 /lib64/ld-linux-x86-64.so.2
-fi
-
-LD_LIBRARY_PATH=. ./bedrock_server
