@@ -1,5 +1,5 @@
 #! /bin/sh
-# docker run --rm -it ubuntu:20.04 /bin/bash
+# docker run --rm -it -u root ubuntu:20.04 /bin/bash
 
 sudo apt-get update
 sudo apt-get -y upgrade
