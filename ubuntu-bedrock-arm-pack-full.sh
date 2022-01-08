@@ -3,5 +3,5 @@
 
 sudo apt-get update
 sudo apt-get -y upgrade
-sudo apt-get -y install zip unzip wget curl
+sudo apt-get -y install zip unzip wget curl gawk
 wget -qO - https://raw.githubusercontent.com/Ruhminations/nix-scripts/main/ubuntu-bedrock-arm-pack.sh | bash -s "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.18.2.03.zip"
