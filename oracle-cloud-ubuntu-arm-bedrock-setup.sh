@@ -8,10 +8,10 @@ wget -O bedrock-server.zip $1 || { echo "[error] failed to download the bedrock 
 unzip -o bedrock-server.zip || { echo "[error] zip downloaded failed to extract, please validate the url's file." && exit 5; }
 wget -O bedrock-depends.zip $2 || { echo "[error] failed to download the bedrock depends zip; please verify the url." && exit 6; }
 unzip -o bedrock-depends.zip || { echo "[error] zip downloaded failed to extract, please validate the url's file." && exit 7; }
-wget -O bedrock-start.sh || { echo "[error] failed to download the bedrock start script; please verify the url." && exit 8; }
+wget -O ubuntu-bedrock-start.sh "https://github.com/Ruhminations/nix-scripts/raw/main/ubuntu-bedrock-start.sh" || { echo "[error] failed to download the bedrock start script; please verify the url." && exit 8; }
 sudo mkdir /mnt/bedrock
 sudo mount -t tmpfs -o rw,size=2G tmpfs /mnt/bedrock
 cp -r ./ /mnt/bedrock
 cd /mnt/bedrock
 ls
-echo "ready to run '/mnt/bedrock/bedrock-start.sh'"
+echo "ready to run '/mnt/bedrock/ubuntu-bedrock-start.sh'"
