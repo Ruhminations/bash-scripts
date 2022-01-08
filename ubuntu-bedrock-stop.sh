@@ -4,7 +4,7 @@ screen -X -S bedrock stuff "^C"
 screen -X -S bedrock quit
 mkdir ./bedrock_bakup
 cp -r /mnt/bedrock ./bedrock_backup
-sudo umount /mnt/bedrock
+sudo umount /mnt/bedrock || sudo lsof -n /mnt/bedrock
 
 # if [ -z "$STY" ]; then
 #   # TODO pull ports from properties
