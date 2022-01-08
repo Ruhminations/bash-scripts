@@ -18,5 +18,6 @@ if [ -z "$STY" ]; then
   fi
   exec screen -L -Logfile bedrock.log -dmS bedrock sh $0;
 else
+  pushd /mnt/bedrock
   LD_LIBRARY_PATH=. ./bedrock_server
 fi
