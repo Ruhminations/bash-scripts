@@ -8,4 +8,5 @@ mkdir bedrock || { echo "[error] bedrock folder already exists." && exit 3; }
 pushd bedrock
 unzip -o ../bedrock-server.zip || { echo "[error] zip downloaded failed to extract, please validate the url's file." && exit 5; }
 unzip -o ../bedrock-depends.zip || { echo "[error] zip downloaded failed to extract, please validate the url's file." && exit 7; }
-wget -O ubuntu-bedrock-start.sh "https://github.com/Ruhminations/nix-scripts/raw/main/ubuntu-bedrock-start.sh" || { echo "[error] failed to download the bedrock start script; please verify the url." && exit 8; }
+wget -O bedrock-start.sh "https://github.com/Ruhminations/nix-scripts/raw/main/ubuntu-bedrock-start.sh" || { echo "[error] failed to download the bedrock start script; please verify the url." && exit 8; }
+wget -O bedrock-stop.sh "https://github.com/Ruhminations/nix-scripts/raw/main/ubuntu-bedrock-stop.sh" || { echo "[error] failed to download the bedrock stop script; please verify the url." && exit 9; }
