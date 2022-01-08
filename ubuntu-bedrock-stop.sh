@@ -1,11 +1,11 @@
 #! /bin/sh
 
-screen -X -S bedrock stuff "^C"
-screen -X -S bedrock quit
-mkdir ./bedrock_bakup
-cp -r /mnt/bedrock ./bedrock_backup
-sudo umount /mnt/bedrock || sudo lsof -n /mnt/bedrock
-sudo rm -rf /mnt/bedrock
+screen -X -S bedrock stuff "^C" || echo "[warning] no existing session to close"
+screen -X -S bedrock quit || echo "[warning] no existing session to close"
+mkdir ./bedrock_bakup || echo "[warning] backup directory already exists"
+cp -r /mnt/bedrock ./bedrock_backup || echo "[warning] no existing files to backup"
+sudo umount /mnt/bedrock || sudo lsof -n /mnt/bedrock || echo "[warning] no existing mount or unable to unmount"
+sudo rm -rf /mnt/bedrock || echo "[warning] failed to cleanup files"
 
 # if [ -z "$STY" ]; then
 #   # TODO pull ports from properties
