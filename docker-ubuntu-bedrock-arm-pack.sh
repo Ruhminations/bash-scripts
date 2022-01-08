@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 # docker run --rm -it -u root ubuntu:20.04 /bin/bash
 
 apt-get update
