@@ -1,7 +1,6 @@
 #! /bin/sh
 # wget -qO - https://github.com/Ruhminations/nix-scripts/raw/main/oracle-cloud-ubuntu-arm-bedrock-setup.sh | bash -s "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.18.2.03.zip" "https://transfer.sh/get/XRLrIs/bedrock_only_depends.zip"
 
-
 wget -qO - https://github.com/Ruhminations/nix-scripts/raw/main/ubuntu-arm-x86-init.sh | bash -s ""
 mkdir bedrock || { echo "[error] bedrock folder already exists." && exit 3; }
 pushd bedrock
